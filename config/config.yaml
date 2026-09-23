@@ -1,0 +1,59 @@
+# Runtime parameters for EDU-C2-031 University Career Support Agent
+# This file holds runtime-tunable settings; keep secrets out of here.
+
+max_retry: 3
+timeout_s: 60
+memory_enabled: false
+llm_provider: "azure_openai"
+
+corpus:
+  version: "AY2025-2026"
+  freshness_threshold_days: 90
+
+timeline:
+  version: "AY2025-2026"
+  freshness_threshold_days: 30
+
+citation:
+  required: true
+
+routes:
+  supported:
+    - "grounded_qa"
+    - "timeline_guidance"
+    - "interview_preparation"
+    - "es_feedback"
+  classifier_confidence_threshold: 0.70
+  low_confidence_default_route: "grounded_qa"
+
+industry:
+  supported_profiles:
+    - "finance"
+    - "it"
+    - "manufacturing"
+    - "retail"
+    - "general"
+  profile_version: "v2025"
+
+es_feedback:
+  rubric_version: "v2025"
+  tone: "constructive"
+  max_draft_chars: 3000
+  min_suggestions: 3
+  criteria:
+    - "self_pr"
+    - "motivation"
+    - "clarity"
+    - "specificity"
+    - "evidence"
+    - "target_role_alignment"
+
+input_limits:
+  query_max_chars: 2000
+  student_ref_pattern: "^[A-Z0-9]{6,12}$"
+
+hitl:
+  enabled: false
+
+retention_policy: "ephemeral"
+advisory_notice: "Advisory career-centre support only. Advisers and employers remain authoritative for eligibility, requirements, and deadlines."

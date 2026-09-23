@@ -1,0 +1,28 @@
+# Agent Manifest — AgentRegistry entry point for EDU-C2-031.
+# AgentRegistry reads these keys at the root level. Runtime parameters belong
+# in config/config.yaml.
+id: "EDU-C2-031"
+name: "University Career Support Agent"
+namespace: "agent1000"
+version: "1.0.1"
+enabled: true
+category: "Cat 2"
+generation_mode: "llm"
+industry: "EDU"
+
+# Opaque compatibility metadata; this is not an inheritance selector.
+base_type: "AgentBaseGraph"
+
+# AgentRegistry expects one dotted import path.
+class: "src.graph.graph.Graph"
+
+required_trust_level: "VERIFIED_EXTERNAL"
+
+# Vector retrieval and Azure OpenAI credentials are invocation-scoped.
+requires:
+  secrets:
+    - vector_store_key
+    - AZURE_OPENAI_API_KEY
+    - AZURE_OPENAI_ENDPOINT
+    - AZURE_OPENAI_DEPLOYMENT
+  extras: ["openai"]
